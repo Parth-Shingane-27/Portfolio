@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f6f2e9;
+  --bg-alt: #efe9dc;
+  --ink: #0e1726;
+  --muted: #566073;
+  --line: rgba(14, 23, 38, 0.14);
+  --accent: #0a7f5c;
+  --accent-ink: #ffffff;
+  --card: #fbf9f3;
+}
+.dark {
+  --bg: #0b111c;
+  --bg-alt: #101827;
+  --ink: #f1ece0;
+  --muted: #9aa5b8;
+  --line: rgba(241, 236, 224, 0.14);
+  --accent: #3ddc97;
+  --accent-ink: #06130d;
+  --card: #0f1726;
+}
+/* Always-dark sections for contrast */
+.surface-dark {
+  --bg: #0b111c;
+  --bg-alt: #101827;
+  --ink: #f1ece0;
+  --muted: #9aa5b8;
+  --line: rgba(241, 236, 224, 0.14);
+  --accent: #3ddc97;
+  --accent-ink: #06130d;
+  --card: #0f1726;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-alt: var(--bg-alt);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-card: var(--card);
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.grid-lines {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 70%);
+}
+@keyframes flow {
+  to { stroke-dashoffset: -24; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.flow { stroke-dasharray: 4 8; animation: flow 1.6s linear infinite; }
+.pulse { animation: pulse-dot 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .flow, .pulse { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
