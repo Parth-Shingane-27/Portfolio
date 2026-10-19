@@ -3,8 +3,8 @@ import type { AnchorHTMLAttributes, ReactNode } from 'react'
 type Variant = 'primary' | 'ghost'
 
 const styles: Record<Variant, string> = {
-  primary: 'bg-accent text-accent-ink hover:brightness-110',
-  ghost: 'border border-line text-ink hover:border-ink',
+  primary: 'bg-accent text-accent-ink hover:bg-ink',
+  ghost: 'border border-line-strong text-ink hover:border-accent hover:text-accent',
 }
 
 export function ButtonLink({
@@ -16,7 +16,7 @@ export function ButtonLink({
   return (
     <a
       {...rest}
-      className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition ${styles[variant]} ${className}`}
+      className={`roll-host inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-semibold tracking-wide transition-colors duration-300 ${styles[variant]} ${className}`}
     >
       {children}
     </a>

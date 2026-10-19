@@ -1,65 +1,51 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
+/*
+  Design tokens. One neutral dark base and ONE accent colour; everything else derives from these.
+  To re-theme the whole site, change --accent (and --accent-ink if the new accent is dark).
+*/
 :root {
-  --bg: #f6f2e9;
-  --bg-alt: #efe9dc;
-  --ink: #0e1726;
-  --muted: #566073;
-  --line: rgba(14, 23, 38, 0.14);
-  --accent: #0a7f5c;
-  --accent-ink: #ffffff;
-  --card: #fbf9f3;
-}
-.dark {
-  --bg: #0b111c;
-  --bg-alt: #101827;
-  --ink: #f1ece0;
-  --muted: #9aa5b8;
-  --line: rgba(241, 236, 224, 0.14);
-  --accent: #3ddc97;
-  --accent-ink: #06130d;
-  --card: #0f1726;
-}
-/* Always-dark sections for contrast */
-.surface-dark {
-  --bg: #0b111c;
-  --bg-alt: #101827;
-  --ink: #f1ece0;
-  --muted: #9aa5b8;
-  --line: rgba(241, 236, 224, 0.14);
-  --accent: #3ddc97;
-  --accent-ink: #06130d;
-  --card: #0f1726;
-  background: var(--bg);
-  color: var(--ink);
+  --bg: #0a0a0b;
+  --surface: #111113;
+  --surface-2: #17171a;
+  --ink: #f4f4f5;
+  --muted: #a6a6b0;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --accent: #c6ff3a;
+  --accent-ink: #0a0a0b;
+  --p: var(--accent);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
-  --color-card: var(--card);
-  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4.5rem;
+  background: var(--bg);
+  color-scheme: dark;
 }
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s, color 0.3s;
+  overflow-x: clip;
 }
 ::selection {
   background: var(--accent);
@@ -70,24 +56,67 @@ body {
   outline-offset: 3px;
   border-radius: 4px;
 }
-.grid-lines {
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 70%);
+
+/* Headings: one voice everywhere */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
 }
-@keyframes flow {
-  to { stroke-dashoffset: -24; }
+.em-accent {
+  color: var(--accent);
 }
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
+
+/* Shared surface used by every card/panel so nothing looks one-off */
+.panel {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 1.5rem;
 }
+
+/* Hero ribbon marquee */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes flow { to { stroke-dashoffset: -24; } }
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 .flow { stroke-dasharray: 4 8; animation: flow 1.6s linear infinite; }
 .pulse { animation: pulse-dot 2.4s ease-in-out infinite; }
+
+dialog.case-study {
+  animation: dialog-in 0.45s var(--ease);
+}
+dialog.case-study::backdrop {
+  background: rgba(5, 5, 6, 0.82);
+  backdrop-filter: blur(6px);
+  animation: backdrop-in 0.35s ease;
+}
+
+/* Lenis owns smoothing on mouse devices */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Rolling text: two copies slide up on hover/focus of the .roll-host ancestor */
+.roll { position: relative; display: inline-flex; overflow: hidden; vertical-align: bottom; }
+.roll > span { display: block; transition: transform 0.5s var(--ease); }
+.roll > span + span { position: absolute; left: 0; top: 100%; }
+.roll-host:hover .roll > span, .roll-host:focus-visible .roll > span { transform: translateY(-100%); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .flow, .pulse { animation: none; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; }
+  .marquee, .flow, .pulse, dialog.case-study, dialog.case-study::backdrop { animation: none; }
+  .roll > span { transition: none; }
 }

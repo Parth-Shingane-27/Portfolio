@@ -18,6 +18,7 @@ export const navLinks = [
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
   { id: 'achievements', label: 'Achievements' },
+  { id: 'github', label: 'GitHub' },
   { id: 'contact', label: 'Contact' },
 ] as const
 
@@ -37,7 +38,7 @@ export interface CaseStudy {
 }
 
 export interface FeaturedProject {
-  id: 'safedrain' | 'gridlock' | 'weather'
+  id: 'safedrain' | 'krishibhav' | 'weather' | 'astar'
   name: string
   category: string
   tagline: string
@@ -46,12 +47,15 @@ export interface FeaturedProject {
   results: string[]
   links: { label: string; href: string; kind: 'repo' | 'demo' }[]
   note?: string
+  /** Live deployment that can be embedded as a real preview (never a mockup). */
+  preview?: string
   caseStudy: CaseStudy
 }
 
 export const featuredProjects: FeaturedProject[] = [
   {
     id: 'safedrain',
+    preview: 'https://safe-drain.vercel.app',
     name: 'SafeDrain',
     category: 'Safety · IoT · Machine Learning',
     tagline: 'Sanitation Worker Safety & Monitoring System',
@@ -89,39 +93,31 @@ export const featuredProjects: FeaturedProject[] = [
     },
   },
   {
-    id: 'gridlock',
-    name: 'Flipkart GRIDLOCK 2.0',
-    category: 'Predictive Analytics · Geospatial ML',
-    tagline: 'Traffic Demand Prediction',
+    id: 'krishibhav',
+    name: 'Krishi Bhav',
+    category: 'Agri-Tech · Machine Learning',
+    tagline: 'AI-Powered Agricultural Price Intelligence & Market Linkage Platform',
     summary:
-      'A machine-learning pipeline that predicts traffic demand from geospatial, temporal and environmental features, tuned with leakage-aware validation and an ensemble of gradient-boosted models.',
-    stack: ['Python', 'Pandas', 'NumPy', 'LightGBM', 'CatBoost', 'Scikit-learn'],
-    results: ['92.695 leaderboard score (from resume).'],
-    links: [
-      {
-        label: 'Prototype repo',
-        href: 'https://github.com/Vijayantra27/GRIDLOCK2.0_Prototype',
-        kind: 'repo',
-      },
-      { label: 'Prototype demo', href: 'https://gridlock-2-0-prototype.vercel.app', kind: 'demo' },
-    ],
-    note: 'The linked prototype is the team’s hackathon dashboard (parking-violation hotspots and patrol planning). The scoring pipeline itself is not in that repository.',
+      'Market price forecasting and mandi recommendations built from historical Agmarknet data, with a workflow that links farmers to buyers.',
+    stack: ['React.js', 'FastAPI', 'MongoDB', 'LightGBM'],
+    results: [],
+    links: [],
+    note: 'No public repository or live deployment is available, so none is linked.',
     caseStudy: {
       problem:
-        'Traffic demand varies with place, time and weather. The challenge was to predict it accurately from geospatial, temporal and environmental signals.',
+        'Farmers often lack reliable price information and a direct route to buyers, which makes it hard to decide where and when to sell.',
       contribution: [
-        'Engineered the machine-learning pipeline for traffic demand prediction (resume).',
+        'Built the price forecasting and mandi recommendation platform on historical Agmarknet data (resume).',
       ],
       approach: [
-        'Feature engineering across geospatial, temporal and environmental inputs.',
-        'GroupKFold validation so that evaluation mirrors unseen locations.',
-        'Blended LightGBM and CatBoost models into one ensemble.',
+        'Historical Agmarknet price data is used to forecast market prices with LightGBM.',
+        'Mandi recommendations help farmers choose where to sell.',
+        'A farmer-to-buyer workflow links both sides of the market.',
       ],
       decisions: [
-        'GroupKFold instead of plain K-fold to avoid optimistic scores from related rows landing in both train and validation.',
-        'Ensemble blending to combine two gradient-boosting models with different strengths.',
+        'FastAPI and MongoDB serve the data and workflow, with a React.js frontend.',
       ],
-      results: ['92.695 leaderboard score.'],
+      results: ['No quantitative results are claimed.'],
     },
   },
   {
@@ -150,6 +146,30 @@ export const featuredProjects: FeaturedProject[] = [
       decisions: [
         'A validation step sits between ingestion and analysis so that bad records do not reach the dashboard.',
       ],
+      results: ['No quantitative results are claimed.'],
+    },
+  },
+  {
+    id: 'astar',
+    name: 'A* Pathfinding Robot',
+    category: 'Robotics · Embedded · Algorithms',
+    tagline: 'Intelligent Autonomous Navigation System',
+    summary:
+      'An autonomous robot that uses the A* search algorithm to calculate optimal routes from a start point to a target while avoiding obstacles on a grid.',
+    stack: ['Python/C++', 'A* Search', 'Arduino', 'Computer Vision', 'Embedded Systems'],
+    results: [],
+    links: [],
+    note: 'The robot is hardware, so there is no live demo. A teammate’s A* shortest-path web implementation is listed under GitHub.',
+    caseStudy: {
+      problem:
+        'A robot needs to reach a target efficiently without hitting obstacles, which means planning a route rather than driving blindly.',
+      contribution: ['Developed the autonomous pathfinding robot using the A* search algorithm (resume).'],
+      approach: [
+        'Heuristic-based path planning using movement costs and estimated distances.',
+        'Grid-based environment so each cell can be scored and compared.',
+        'Obstacle detection and computer vision on embedded hardware (Arduino).',
+      ],
+      decisions: ['A* was chosen because its heuristic reaches the target far faster than uninformed search while still finding an optimal route.'],
       results: ['No quantitative results are claimed.'],
     },
   },
@@ -214,6 +234,14 @@ export const repos: Repo[] = [
     title: 'TraceGuard AI',
     blurb: 'Connects email, web and authentication signals into evidence-based incident reports. Early build: landing page, sign-in and event ingestion exist; detectors and reports are planned.',
     stack: ['FastAPI', 'React', 'TypeScript', 'SQLite'],
+    kind: 'own',
+  },
+  {
+    owner: 'Parth-Shingane-27',
+    name: 'Portfolio',
+    title: 'This portfolio',
+    blurb: 'The site you are looking at: a static React frontend with Motion and GSAP animation, a Three.js hero scene and live GitHub data.',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Motion', 'GSAP', 'Three.js'],
     kind: 'own',
   },
   {
@@ -309,90 +337,55 @@ export const repos: Repo[] = [
   },
 ]
 
-export const resumeOnlyProjects = [
-  {
-    name: 'Krishi Bhav',
-    title: 'AI-Powered Agricultural Price Intelligence & Market Linkage Platform',
-    blurb: 'Market price forecasting and mandi recommendations from historical Agmarknet data, with a workflow linking farmers to buyers. No public repository.',
-    stack: ['React.js', 'FastAPI', 'MongoDB', 'LightGBM'],
-  },
-  {
-    name: 'A* Pathfinding Robot',
-    title: 'Intelligent Autonomous Navigation System',
-    blurb: 'Autonomous robot using A* search with movement costs and heuristic distances to route around obstacles on a grid.',
-    stack: ['Python/C++', 'Arduino', 'Computer Vision'],
-  },
-]
+export type SkillCategory = 'Frontend Engineering' | 'Backend Development' | 'AI / Machine Learning' | 'Databases' | 'Developer Tools'
 
-export interface SkillGroup {
-  title: string
-  items: { name: string; href?: string }[]
+export interface Skill {
+  id: string
+  name: string
+  category: SkillCategory
+  /** One factual sentence about the technology. */
+  blurb: string
+  /** ids of skills that are used together with this one in my projects. */
+  related: string[]
 }
 
-export const skillGroups: SkillGroup[] = [
-  {
-    title: 'Programming Languages',
-    items: [
-      { name: 'Java', href: 'https://docs.oracle.com/en/java/' },
-      { name: 'C++', href: 'https://en.cppreference.com/' },
-      { name: 'Python', href: 'https://docs.python.org/3/' },
-      { name: 'JavaScript', href: 'https://developer.mozilla.org/docs/Web/JavaScript' },
-      { name: 'SQL' },
-    ],
-  },
-  {
-    title: 'Frontend Engineering',
-    items: [
-      { name: 'React.js', href: 'https://react.dev' },
-      { name: 'Next.js', href: 'https://nextjs.org/docs' },
-      { name: 'Tailwind CSS', href: 'https://tailwindcss.com/docs' },
-    ],
-  },
-  {
-    title: 'Backend & APIs',
-    items: [
-      { name: 'Node.js', href: 'https://nodejs.org/docs/latest/api/' },
-      { name: 'FastAPI', href: 'https://fastapi.tiangolo.com' },
-    ],
-  },
-  {
-    title: 'Databases & Developer Tools',
-    items: [
-      { name: 'MongoDB', href: 'https://www.mongodb.com/docs/' },
-      { name: 'MySQL', href: 'https://dev.mysql.com/doc/' },
-      { name: 'Git', href: 'https://git-scm.com/doc' },
-      { name: 'GitHub', href: 'https://docs.github.com' },
-      { name: 'Docker', href: 'https://docs.docker.com' },
-    ],
-  },
-  {
-    title: 'Machine Learning & Data Science',
-    items: [
-      { name: 'Scikit-learn', href: 'https://scikit-learn.org/stable/' },
-      { name: 'PyTorch', href: 'https://pytorch.org/docs/stable/' },
-      { name: 'Pandas', href: 'https://pandas.pydata.org/docs/' },
-      { name: 'NumPy', href: 'https://numpy.org/doc/' },
-      { name: 'LightGBM', href: 'https://lightgbm.readthedocs.io' },
-      { name: 'CatBoost', href: 'https://catboost.ai/docs/' },
-      { name: 'Regression' },
-      { name: 'Classification' },
-      { name: 'Clustering' },
-      { name: 'NLP' },
-      { name: 'RAG' },
-      { name: 'Model Training & Evaluation' },
-    ],
-  },
-  {
-    title: 'Computer Science Fundamentals',
-    items: [
-      { name: 'Data Structures & Algorithms' },
-      { name: 'Object-Oriented Design' },
-      { name: 'Operating Systems' },
-      { name: 'DBMS' },
-      { name: 'Computer Networks' },
-    ],
-  },
+export const skillCategories: SkillCategory[] = [
+  'Frontend Engineering',
+  'Backend Development',
+  'AI / Machine Learning',
+  'Databases',
+  'Developer Tools',
 ]
+
+export const skills: Skill[] = [
+  { id: 'react', name: 'React.js', category: 'Frontend Engineering', blurb: 'Component-based UI library; the frontend of SafeDrain, Krishi Bhav and the weather dashboard.', related: ['next', 'tailwind', 'fastapi', 'node', 'js'] },
+  { id: 'next', name: 'Next.js', category: 'Frontend Engineering', blurb: 'React framework for routing and server rendering.', related: ['react', 'tailwind', 'node'] },
+  { id: 'tailwind', name: 'Tailwind CSS', category: 'Frontend Engineering', blurb: 'Utility-first CSS used to style interfaces quickly and consistently.', related: ['react', 'next'] },
+  { id: 'js', name: 'JavaScript', category: 'Frontend Engineering', blurb: 'The language of the web, on both the browser and Node.js.', related: ['react', 'node', 'next'] },
+
+  { id: 'python', name: 'Python', category: 'Backend Development', blurb: 'My main language for APIs, data work and machine learning.', related: ['fastapi', 'pandas', 'sklearn', 'pytorch', 'lightgbm'] },
+  { id: 'fastapi', name: 'FastAPI', category: 'Backend Development', blurb: 'Python web framework powering the backends of SafeDrain, Krishi Bhav and the weather platform.', related: ['python', 'mongodb', 'react'] },
+  { id: 'node', name: 'Node.js', category: 'Backend Development', blurb: 'JavaScript runtime for server-side code and tooling.', related: ['js', 'react', 'mongodb'] },
+  { id: 'java', name: 'Java', category: 'Backend Development', blurb: 'Object-oriented language used for coursework and problem solving.', related: ['cpp'] },
+  { id: 'cpp', name: 'C++', category: 'Backend Development', blurb: 'Used for data structures, algorithms and embedded work such as the pathfinding robot.', related: ['java'] },
+
+  { id: 'sklearn', name: 'Scikit-learn', category: 'AI / Machine Learning', blurb: 'Classical ML toolkit: regression, classification, clustering and evaluation.', related: ['python', 'pandas', 'numpy', 'lightgbm'] },
+  { id: 'lightgbm', name: 'LightGBM', category: 'AI / Machine Learning', blurb: 'Gradient-boosting library used for Krishi Bhav’s price forecasting.', related: ['python', 'pandas', 'sklearn'] },
+  { id: 'pytorch', name: 'PyTorch', category: 'AI / Machine Learning', blurb: 'Deep-learning framework for training neural models.', related: ['python', 'numpy'] },
+  { id: 'pandas', name: 'Pandas', category: 'AI / Machine Learning', blurb: 'Tabular data analysis and preparation.', related: ['python', 'numpy', 'sklearn', 'lightgbm'] },
+  { id: 'numpy', name: 'NumPy', category: 'AI / Machine Learning', blurb: 'Fast numerical arrays underpinning the Python data stack.', related: ['python', 'pandas', 'pytorch', 'sklearn'] },
+  { id: 'rag', name: 'RAG & NLP', category: 'AI / Machine Learning', blurb: 'Retrieval-augmented generation and language processing.', related: ['python', 'mongodb'] },
+
+  { id: 'mongodb', name: 'MongoDB', category: 'Databases', blurb: 'Document database behind SafeDrain, Krishi Bhav and the weather platform.', related: ['fastapi', 'node'] },
+  { id: 'mysql', name: 'MySQL', category: 'Databases', blurb: 'Relational database, used with SQL in DBMS coursework.', related: ['sql'] },
+  { id: 'sql', name: 'SQL', category: 'Databases', blurb: 'Query language for relational data.', related: ['mysql'] },
+
+  { id: 'git', name: 'Git', category: 'Developer Tools', blurb: 'Version control for every project and team collaboration.', related: ['github'] },
+  { id: 'github', name: 'GitHub', category: 'Developer Tools', blurb: 'Hosting, pull requests and teamwork on hackathon codebases.', related: ['git'] },
+  { id: 'docker', name: 'Docker', category: 'Developer Tools', blurb: 'Containers for reproducible environments.', related: ['fastapi', 'node'] },
+]
+
+export const csFundamentals = ['Data Structures & Algorithms', 'Object-Oriented Design', 'Operating Systems', 'DBMS', 'Computer Networks']
 
 export const achievements = [
   {
