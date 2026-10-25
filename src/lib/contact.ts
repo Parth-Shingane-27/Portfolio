@@ -16,7 +16,13 @@ export async function sendContact(p: ContactPayload): Promise<SendResult> {
     const res = await fetch(CONTACT_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(p),
+      body: JSON.stringify({
+        name: p.name,
+        email: p.email,
+        message: p.message,
+        _replyto: p.email,
+        _subject: `New Portfolio Message from ${p.name}`,
+      }),
     })
     if (!res.ok) return { ok: false, error: `The service answered with status ${res.status}.` }
     return { ok: true }
