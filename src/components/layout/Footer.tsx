@@ -1,5 +1,5 @@
 import { Mail } from 'lucide-react'
-import { Github, Instagram, Linkedin } from '../ui/BrandIcons'
+import { Github, Instagram, Linkedin, X } from '../ui/BrandIcons'
 import { profile } from '../../data/portfolio'
 
 const year = new Date().getFullYear()
@@ -8,6 +8,7 @@ const socials = [
   { href: profile.github, label: 'GitHub', Icon: Github },
   { href: profile.linkedin, label: 'LinkedIn', Icon: Linkedin },
   { href: profile.instagram, label: 'Instagram', Icon: Instagram },
+  { href: profile.x, label: 'X', Icon: X },
   { href: `mailto:${profile.email}`, label: 'Email', Icon: Mail },
 ]
 

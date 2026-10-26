@@ -9,6 +9,7 @@ export const profile = {
   githubUser: 'Parth-Shingane-27',
   linkedin: 'https://www.linkedin.com/in/parth-shingane-943323400/',
   instagram: 'https://www.instagram.com/parth_ns21/',
+  x: 'https://x.com/Parthshingane27',
   resume: '/Parth_Shingane_Resume.pdf',
   location: 'Pune, India',
 }
