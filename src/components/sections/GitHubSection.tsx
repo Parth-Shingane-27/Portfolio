@@ -39,7 +39,9 @@ export function GitHubSection() {
     const total = [...count.values()].reduce((a, b) => a + b, 0)
     return [...count.entries()].sort((a, b) => b[1] - a[1]).map(([name, n]) => ({ name, n, pct: (n / total) * 100 }))
   }, [meta])
-  const palette = ['#c6ff3a', '#e4e4e7', '#a1a1aa', '#71717a', '#52525b', '#3f3f46', '#27272a']
+  // const palette = ['#c6ff3a', '#e4e4e7', '#a1a1aa', '#71717a', '#52525b', '#3f3f46', '#27272a']
+
+const palette = ['#D66A3D', '#F2E9DC', '#C9A477', '#B0A397', '#77675A', '#28231F', '#11100F']
 
   return (
     <section id="github" className="relative py-28 md:py-36">
