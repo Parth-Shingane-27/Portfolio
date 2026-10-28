@@ -11,7 +11,7 @@ export const profile = {
   instagram: 'https://www.instagram.com/parth_ns21/',
   x: 'https://x.com/Parthshingane27',
   resume: '/Parth_Shingane_Resume.pdf',
-  location: 'Pune, India',
+  location: 'Pune, Maharashtra, India',
 }
 
 export const navLinks = [
@@ -391,7 +391,7 @@ export const csFundamentals = ['Data Structures & Algorithms', 'Object-Oriented 
 export const achievements = [
   {
     title: 'National-level hackathon finalist',
-    detail: 'SAMVED — reached the finals with SafeDrain.',
+    detail: 'SAMVED - reached the finals with SafeDrain.',
     tag: 'Hackathon',
   },
   {
@@ -416,13 +416,13 @@ export const achievements = [
   },
   {
     title: 'Tech member, Girl Script Club',
-    detail: 'MIT Academy of Engineering.',
+    detail: 'MIT Academy of Engineering, Pune, Maharashtra, India',
     tag: 'Community',
   },
 ]
 
 export const education = {
-  school: 'MIT Academy of Engineering, Pune',
-  degree: 'B.Tech in Computer Science and Engineering',
+  school: 'MIT Academy of Engineering, Pune, Maharashtra, India',
+  degree: 'B.Tech in Computer Engineering',
   years: '2024 – 2028',
 }
