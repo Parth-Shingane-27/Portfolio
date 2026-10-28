@@ -10,10 +10,14 @@ function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-20%' })
   const reduce = useReducedMotion()
-  const [n, setN] = useState(reduce ? to : 0)
-  useEffect(() => {
-    if (!inView || reduce) return
-    const c = animate(0, to, { duration: 1.6, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setN(Math.round(v)) })
+    const [n, setN] = useState(to)
+    useEffect(() => {
+    if (reduce) {
+      setN(to)
+      return
+    }
+    if (!inView) return
+    const c = animate(0, to, { duration: 1.6, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setN(Math.round(v)), onComplete: () => setN(to) })
     return () => c.stop()
   }, [inView, reduce, to])
   return (
@@ -137,7 +141,7 @@ export function Achievements() {
 
   return (
     <section id="achievements" className="relative py-28 md:py-36">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
+      <div className="mx-auto max-w-[1600px] px-5 md:px-8">
         <SectionHeading eyebrow="Achievements" title="Built through *curiosity.*" />
 
         <dl className="mb-20 grid gap-px overflow-hidden panel bg-line sm:grid-cols-3">

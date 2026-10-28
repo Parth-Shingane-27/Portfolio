@@ -50,7 +50,7 @@ const journey = [
 export function About() {
   return (
     <section id="about" className="relative py-28 md:py-36">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
+      <div className="mx-auto max-w-[1600px] px-5 md:px-8">
         <SectionHeading eyebrow="About" title="The mind behind the *code.*" />
 
         <div className="grid gap-16 lg:grid-cols-12">

@@ -15,7 +15,7 @@ const socials = [
 export function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 md:flex-row md:px-8">
+      <div className="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-6 px-5 py-8 md:flex-row md:px-8">
         <a href="#top" className="font-display text-lg font-bold tracking-tight">
           Parth Shingane
         </a>

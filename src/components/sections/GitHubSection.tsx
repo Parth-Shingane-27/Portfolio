@@ -43,7 +43,7 @@ export function GitHubSection() {
 
   return (
     <section id="github" className="relative py-28 md:py-36">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
+      <div className="mx-auto max-w-[1600px] px-5 md:px-8">
         <SectionHeading eyebrow="GitHub" title="Code in the *open.*" />
 
         <div className="grid gap-10 lg:grid-cols-12">

@@ -40,7 +40,10 @@ export function Hero() {
     <section id="top" ref={root} className="relative flex min-h-[100svh] flex-col overflow-hidden">
       <DotField className="[mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000,transparent)]" />
 
-      <div ref={content} className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 content-center gap-14 px-5 pb-32 pt-28 md:px-8 lg:grid-cols-12">
+<div
+  ref={content}
+  className="relative z-10 mx-auto grid w-full max-w-[1600px] flex-1 content-center gap-14 px-5 pb-32 pt-28 sm:px-8 lg:px-12 lg:grid-cols-12"
+>
         <div className="lg:col-span-8">
           <motion.p {...rise(0.05)} className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
             Portfolio · {profile.location}

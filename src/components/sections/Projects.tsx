@@ -15,7 +15,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="relative py-28 md:py-36">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
+      <div className="mx-auto max-w-[1600px] px-5 md:px-8">
         <SectionHeading eyebrow="Projects" title="Selected work. *Real impact.*" className="mb-6 md:mb-8" />
 
         <ProjectList projects={featuredProjects} onOpen={setOpen} />

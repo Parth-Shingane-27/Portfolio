@@ -67,7 +67,7 @@ export function Skills() {
 
   return (
     <section id="skills" className="relative py-28 md:py-36">
-            <div className="relative mx-auto max-w-7xl px-5 md:px-8">
+            <div className="relative mx-auto max-w-[1600px] px-5 md:px-8">
         <SectionHeading eyebrow="Skills" title="My tools of *creation.*" />
 
         {/* Orbital constellation (desktop) */}

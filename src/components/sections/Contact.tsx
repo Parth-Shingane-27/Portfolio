@@ -116,7 +116,7 @@ export function Contact() {
       id="contact"
       className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-center border-t border-line py-16 md:min-h-[calc(100svh-4rem)] md:py-20"
     >
-      <div className="mx-auto w-full max-w-7xl px-5 md:px-8">
+      <div className="mx-auto w-full max-w-[1600px] px-5 md:px-8">
         <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
 
           {/* Left: Heading and email button */}

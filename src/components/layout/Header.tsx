@@ -41,7 +41,7 @@ export function Header() {
       >
         Skip to content
       </a>
-      <nav aria-label="Primary" className="relative z-10 mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
+      <nav aria-label="Primary" className="relative z-10 mx-auto flex h-16 max-w-[1600px] items-center justify-between px-5 md:px-8">
         <a href="#top" aria-label="Parth Shingane, home" className="font-display text-lg font-extrabold uppercase tracking-tight">
           Parth Shingane
         </a>
